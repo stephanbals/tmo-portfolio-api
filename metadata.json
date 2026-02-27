@@ -1,0 +1,65 @@
+{
+  "name": "Transformation Portfolio Hub",
+  "description": "Enterprise Transformation Portfolio Decision Intelligence Platform",
+
+  "requestFramePermissions": [
+    "allow-same-origin",
+    "allow-scripts",
+    "allow-forms",
+    "allow-modals",
+    "allow-popups",
+    "allow-top-navigation-by-user-activation"
+  ],
+
+  "tools": [
+    {
+      "name": "fetch_portfolio_initiative_data",
+      "description": "Retrieve initiative-level portfolio data.",
+      "endpoint": {
+        "url": "https://tmo-portfolio-api-192398331015.europe-west1.run.app/api/queryPortfolio",
+        "method": "POST"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "persist_board_decision",
+      "description": "Persist Board-level funding decisions.",
+      "endpoint": {
+        "url": "https://tmo-portfolio-api-192398331015.europe-west1.run.app/api/writeBoardDecision",
+        "method": "POST"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "decision_id": { "type": "string" },
+          "initiative_id": { "type": "string" },
+          "composite_score": { "type": "number" },
+          "decision_outcome": { "type": "string" },
+          "board_rationale": { "type": "string" }
+        },
+        "required": [
+          "decision_id",
+          "initiative_id",
+          "composite_score",
+          "decision_outcome",
+          "board_rationale"
+        ]
+      }
+    },
+    {
+      "name": "fetch_board_decisions",
+      "description": "Retrieve all persisted Board Decisions.",
+      "endpoint": {
+        "url": "https://tmo-portfolio-api-192398331015.europe-west1.run.app/api/getBoardDecisions",
+        "method": "POST"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}
